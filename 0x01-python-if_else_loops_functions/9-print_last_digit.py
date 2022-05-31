@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-def print_last_digit(number):
-    if number < 0:
-        number = -number
-    last = number % 10
-    print(last, end='')
-    return last
+def uppercase(str):
+    tmp = list(str)
+    for i in range(len(tmp)):
+        if (ord(tmp[i]) > 96 and ord(tmp[i]) < 123):
+            tmp[i] = chr(ord(tmp[i]) - 32)
+    print("{}".format("".join(tmp)))
