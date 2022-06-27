@@ -1,1 +1,1 @@
-ALX python class proj
+Be persistent 
