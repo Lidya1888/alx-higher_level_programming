@@ -1,1 +1,1 @@
-it is ALX python project
+ python project
