@@ -1,0 +1,193 @@
+
+
+
+the aim of the lesson
+* How to create a new MySQL user
+* How to manage privileges for a user to a database or table
+* What’s a PRIMARY KEY
+* What’s a FOREIGN KEY
+* How to use NOT NULL and UNIQUE constraints
+* How to retrieve datas from multiple tables in one request
+* What are subqueries
+* What are JOIN and UNION
+
+                                      
+                                                                                                                   
+                                  
+         
+                                        
+           
+                                        
+                                                                                                                     
+                                 
+                                                                                           
+                                                                            
+ttps://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql) (same as `14-my_genres.sql`)
+
+Write a script that lists all Comedy shows in the database `hbtn_0d_tvshows`.
+
+* The `tv_genres` table contains only one record where `name` = `Comedy` (but the `id` can be different)
+* Each record should display: `tv_shows.title`
+* Results must be sorted in ascending order by the show title
+* You can use only one `SELECT` statement
+* The database name will be passed as an argument of the `mysql` command
+
+
+
+```
+$ guillaume@ubuntu:~/$ cat 15-comedy_only.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows
+Enter password: 
+title
+New Girl
+Silicon Valley
+The Big Bang Theory
+The Last Man on Earth
+$ guillaume@ubuntu:~/$
+```
+
+## List shows and genres
+
+Import the database dump from `hbtn_0d_tvshows` to your MySQL server: [download](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql) (same as `15-comedy_only.sql`)
+
+Write a script that lists all shows, and all genres linked to that show, from the database `hbtn_0d_tvshows`.
+
+* If a show doesn’t have a genre, display `NULL` in the genre column
+* Each record should display: `tv_shows.title` - `tv_genres.name`
+* Results must be sorted in ascending order by the show title and genre name
+* You can use only one `SELECT` statement
+* The database name will be passed as an argument of the `mysql` command
+
+
+
+```
+$ guillaume@ubuntu:~/$ cat 16-shows_by_genre.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows
+Enter password: 
+title   name
+Better Call Saul    NULL
+Breaking Bad    Crime
+Breaking Bad    Drama
+Breaking Bad    Suspense
+Breaking Bad    Thriller
+Dexter  Crime
+Dexter  Drama
+Dexter  Mystery
+Dexter  Suspense
+Dexter  Thriller
+Game of Thrones Adventure
+Game of Thrones Drama
+Game of Thrones Fantasy
+Homeland    NULL
+House   Drama
+House   Mystery
+New Girl    Comedy
+Silicon Valley  Comedy
+The Big Bang Theory Comedy
+The Last Man on Earth   Comedy
+The Last Man on Earth   Drama
+$ guillaume@ubuntu:~/$
+```
+
+## Not my genre
+
+Import the database dump from `hbtn_0d_tvshows` to your MySQL server: download (same as `16-shows_by_genre.sql`)
+
+Write a script that uses the `hbtn_0d_tvshows` database to list all genres not linked to the show Dexter
+
+* The `tv_shows` table contains only one record where `title` = `Dexter` (but the `id` can be different)
+* Each record should display: `tv_genres.name`
+* Results must be sorted in ascending order by the genre name
+* You can use a maximum of two `SELECT` statement
+* The database name will be passed as an argument of the `mysql` command
+
+
+```
+$ guillaume@ubuntu:~/$ cat 100-not_my_genres.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows
+Enter password: 
+name
+Adventure
+Comedy
+Fantasy
+$ guillaume@ubuntu:~/$
+```
+
+## No Comedy tonight!
+
+Import the database dump from `hbtn_0d_tvshows` to your MySQL server: [download](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows.sql) (same as `100-not_my_genres.sql`)
+
+Write a script that lists all shows without the genre `Comedy` in the database `hbtn_0d_tvshows`.
+
+* The `tv_genres` table contains only one record where `name` = `Comedy` (but the `id` can be different)
+* Each record should display: `tv_shows.title`
+* Results must be sorted in ascending order by the show title
+* You can use a maximum of two `SELECT` statement
+* The database name will be passed as an argument of the `mysql` command
+
+
+
+```
+$ guillaume@ubuntu:~/$ cat 101-not_a_comedy.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows
+Enter password: 
+title
+Better Call Saul
+Breaking Bad
+Dexter
+Game of Thrones
+Homeland
+House
+$ guillaume@ubuntu:~/$
+```
+
+## Rotten tomatoes
+
+Import the database hbtn_0d_tvshows_rate dump to your MySQL server: [download](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows_rate.sql)
+
+Write a script that lists all shows from `hbtn_0d_tvshows_rate` by their `rating`.
+
+* Each record should display: tv_shows.title - `rating` sum
+* Results must be sorted in descending order by the `rating`
+* You can use only one `SELECT` statement
+* The database name will be passed as an argument of the mysql command
+```
+guillaume@ubuntu:~/$ cat 102-rating_shows.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows_rate
+Enter password: 
+title   rating
+Better Call Saul    163
+Homeland    145
+Silicon Valley  82
+Game of Thrones 79
+Dexter  24
+House   21
+Breaking Bad    16
+The Last Man on Earth   10
+The Big Bang Theory 0
+New Girl    0
+guillaume@ubuntu:~/$ 
+
+```
+
+## Best genre
+
+Import the database `dump` from `hbtn_0d_tvshows_rate` to your MySQL server: [download](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/274/hbtn_0d_tvshows_rate.sql) (same as 102-rating_shows.sql)
+
+Write a script that lists all `genres` in the database `hbtn_0d_tvshows_rate` by their `rating`.
+
+* Each record should display: tv_genres.name - `rating` sum
+* Results must be sorted in descending order by their `rating`
+* You can use only one `SELECT` statement
+* The database name will be passed as an argument of the mysql command
+
+```
+guillaume@ubuntu:~/$ cat 103-rating_genres.sql | mysql -hlocalhost -uroot -p hbtn_0d_tvshows_rate
+Enter password: 
+name    rating
+Drama   150
+Comedy  92
+Adventure   79
+Fantasy 79
+Mystery 45
+Crime   40
+Suspense    40
+Thriller    40
+guillaume@ubuntu:~/$ 
+
+```
